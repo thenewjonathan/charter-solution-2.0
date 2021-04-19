@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
+import HookExample from "./HookExample";
+import ReactDOM from 'react-dom';
+
 
 class PointsCalculator extends Component {
     constructor(props) {
         super(props);
         this.calculateReward = this.calculateReward.bind(this);
-
+        this.goToHooks = this.goToHooks.bind(this);
     }
 
     setOutput(text) {
         document.getElementById("output_field").value = text;
+    }
+
+    goToHooks() {
+        ReactDOM.render(
+          <React.StrictMode>
+            <HookExample />
+          </React.StrictMode>,
+          document.getElementById('root')
+        );
     }
 
     calculateReward() {
@@ -63,8 +75,7 @@ class PointsCalculator extends Component {
     }
 
     componentDidMount() {
-//         document.getElementById("output_field").value = "{this.state.outputText}";
-//         this.testCalculateFunction();
+        this.testCalculateFunction();
     }
 
     render() {
@@ -76,6 +87,7 @@ class PointsCalculator extends Component {
                 </button>
                 <input id="input_field" placeholder="input amount spent here" />
                 <input id="output_field" disabled />
+                <button id="hookPage" onClick={this.goToHooks}>See Hooks</button>
             </div>
         )
     }
